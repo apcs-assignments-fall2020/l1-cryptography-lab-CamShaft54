@@ -21,23 +21,45 @@ public class Caesar {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Would you like to \"encrypt\" or \"decrypt\" a message?");
+        System.out.println("Would you like to \"encrypt\" or \"decrypt\" or \"encryptKey\" or \"decryptKey\" a message?");
         String command = scan.nextLine().trim().toLowerCase();
 
-        if (command.equals("encrypt")) {
-            System.out.println("Please enter your message to be encrypted: ");
-            String message = scan.nextLine();
-            System.out.println("Here is your encrypted message: ");
-            System.out.println(encryptCaesar(message));
-        }
-        else if (command.equals("decrypt")) {
-            System.out.println("Please enter your message to be decrypted: ");
-            String message = scan.nextLine();
-            System.out.println("Here is your decrypted message: ");
-            System.out.println(decryptCaesar(message));
-        }
-        else {
-            System.out.println("Unknown command; please type either \"encrypt\" or \"decrypt\"");
+        switch (command.toLowerCase()) {
+            case "encrypt": {
+                System.out.println("Please enter your message to be encrypted: ");
+                String message = scan.nextLine();
+                System.out.println("Here is your encrypted message: ");
+                System.out.println(encryptCaesar(message));
+                break;
+            }
+            case "decrypt": {
+                System.out.println("Please enter your message to be decrypted: ");
+                String message = scan.nextLine();
+                System.out.println("Here is your decrypted message: ");
+                System.out.println(decryptCaesar(message));
+                break;
+            }
+            case "encryptkey": {
+                System.out.println("Please enter your message to be decrypted: ");
+                String message = scan.nextLine();
+                System.out.println("Please enter the key: ");
+                int key = scan.nextInt();
+                System.out.println("Here is your encrypted message: ");
+                System.out.println(encryptCaesarKey(message, key));
+                break;
+            }
+            case "decryptkey": {
+                System.out.println("Please enter your message to be decrypted: ");
+                String message = scan.nextLine();
+                System.out.println("Please enter the key: ");
+                int key = scan.nextInt();
+                System.out.println("Here is your decrypted message: ");
+                System.out.println(decryptCaesarKey(message, key));
+                break;
+            }
+            default:
+                System.out.println("Unknown command; please type either \"encrypt\" or \"decrypt\"");
+                break;
         }
 
         scan.close();

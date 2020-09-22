@@ -2,13 +2,43 @@ import java.util.Scanner;
 
 public class Vigenere {
     public static String encryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        int[] keys = key.chars().toArray();
+        String result = "";
+        int j = 0;
+        for (int i = 0; i < message.length(); i++) {
+            int cur_key = keys[j % keys.length] - 65;
+            j++;
+            char cur_char = message.charAt(i);
+            if (cur_char >= 65 && cur_char <= 90) {
+                result += (char) ((cur_char - 65 + cur_key) % 26 + 65);
+            } else if (cur_char >= 97 && cur_char <= 122) {
+                result += (char) ((cur_char - 97 + cur_key) % 26 + 97);
+            } else {
+                result += cur_char;
+                j--;
+            }
+        }
+        return result;
     }
 
     public static String decryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        int[] keys = key.chars().toArray();
+        String result = "";
+        int j = 0;
+        for (int i = 0; i < message.length(); i++) {
+            int cur_key = keys[j % keys.length] - 65;
+            j++;
+            char cur_char = message.charAt(i);
+            if (cur_char >= 65 && cur_char <= 90) {
+                result += (char) ((cur_char - 65 + 26 - cur_key) % 26 + 65);
+            } else if (cur_char >= 97 && cur_char <= 122) {
+                result += (char) ((cur_char - 97 + 26 - cur_key) % 26 + 97);
+            } else {
+                result += cur_char;
+                j--;
+            }
+        }
+        return result;
     }
 
 
